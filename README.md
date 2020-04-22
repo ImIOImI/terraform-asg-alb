@@ -12,7 +12,19 @@ You can add additional compute instances in their own autoscaling groups with di
 
 ## Requirements
 
-This module assumes you have a vpc, security groups, and public subnets already available that you would like to deploy into. By default the data queries will be looking for a key named `Default` with a value of `true`. Once those are found, Terraform will deploy into the relevant vpc/subnet and attach the tagged security groups (please remember you can add up to 5). All these tags are variables that can be overriden as seen on the table below.  
+### Tagged Network Resources
+
+This module assumes you have a vpc, security groups, and public subnets already available that you would like to deploy into. By default the data queries will be looking for a key named `Default` with a value of `true`. Once those are found, Terraform will deploy into the relevant vpc/subnet and attach the tagged security groups (please remember you can add up to 5). All these tags are variables that can be overriden as seen on the table below. 
+
+### Route53 domain
+
+A url is generated via route53 for each autoscaling group, therefore, if you don't have a domain already, you will have to disable the web-url module in modules/compute/main.tf
+
+### Route 53 SSL Cert
+
+For the port 443 listener on the ALB it requires you to have an ssl cert associated with your domain. You can disable this by disabling the https listener in modules/lb/alb/main.tf   
+
+
 
 ## Providers
 
