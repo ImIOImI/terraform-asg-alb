@@ -25,13 +25,13 @@ variable "s3-log-bucket"{
 variable "compute-sg-tag" {
   type = string
   description = "Put this tag on all security groups that a compute instance should have"
-  default = "Compute"
+  default = "Default"
 }
 
 variable "public-subnet-tag" {
   type = string
   description = "Put this tag on any subnets that the alb should have access to"
-  default = "Public"
+  default = "Default"
 }
 
 variable "default-vpc-tag" {
