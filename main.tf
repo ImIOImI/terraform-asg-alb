@@ -28,6 +28,7 @@ module "alb" {
   environment = var.environment
   public-subnet-tag = var.public-subnet-tag
   s3-log-bucket = var.s3-log-bucket
+  default-vpc-tag = var.default-vpc-tag
 }
 
 module "compute01" {
@@ -44,4 +45,5 @@ module "compute01" {
   health-check-type = var.health-check-type
   key-name = var.key-name
   public-subnet-tag = var.public-subnet-tag
+  default-vpc-tag = var.default-vpc-tag
 }

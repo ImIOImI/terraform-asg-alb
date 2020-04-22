@@ -5,7 +5,7 @@ locals {
     AMI = var.ami
   }
   
-  url = lower("${var.name}.${module.global.domain}")
+  url = lower("${var.name}.${var.domain}")
 }
 
 data "aws_lb" "selected" {
@@ -29,11 +29,11 @@ module "compute" {
   image_id = var.ami
   security_groups             = module.sg.compute-ids
   instance_type               = var.instance
-  key_name                    = module.global.key-name
+  key_name                    = var.key-name
   associate_public_ip_address = true
 
   desired_capacity = var.desired-capacity
-  health_check_type = module.global.health-check-type
+  health_check_type = var.health-check-type
   max_size = var.max-capacity
   min_size = var.min-capacity
   name = var.name
@@ -44,9 +44,10 @@ module "compute" {
 module "web-url" {
   source = "../route53/alias"
   dns-name = lower(var.name)
-  environment = module.global.environment
+  environment = var.environment
   alias-name = data.aws_lb.selected.dns_name
   zone-id = data.aws_lb.selected.zone_id
+  domain = var.domain
 }
 
 module "group" {
@@ -56,6 +57,9 @@ module "group" {
   web-arn = data.aws_lb.selected.arn
   name = var.name
   asg-id = module.compute.this_autoscaling_group_id
+  domain = var.domain
+  default-vpc-tag = var.default-vpc-tag
+  public-subnet-tag = var.public-subnet-tag
 }
 
 resource "aws_lb_listener_rule" "https" {

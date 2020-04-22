@@ -40,3 +40,11 @@ variable "asg_depends_on" {
   type    = any
   default = null
 }
+
+variable "compute-tag" {}
+variable "public-subnet-tag" {}
+variable "key-name" {}
+variable "health-check-type" {}
+variable "environment" {}
+variable "domain" {}
+variable "default-vpc-tag" {}

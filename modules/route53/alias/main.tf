@@ -1,5 +1,6 @@
 module "zone" {
   source = "../zone"
+  domain = var.domain
 }
 
 resource "aws_route53_record" "record" {

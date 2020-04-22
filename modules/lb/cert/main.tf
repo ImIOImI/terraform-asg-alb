@@ -1,11 +1,9 @@
 data "aws_acm_certificate" "cert" {
-  domain   = module.global.domain
+  domain   = var.domain
   statuses = ["ISSUED"]
 }
 
-module "global" {
-  source = "../../.global"
-}
+variable "domain" {}
 
 output "arn" {
   value = data.aws_acm_certificate.cert.arn

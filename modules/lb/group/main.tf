@@ -20,7 +20,7 @@ resource "aws_alb_target_group" "http" {
   tags = var.tags
 
   health_check {
-    path = "/Default.aspx"
+    path = "/"
     port = 80
     healthy_threshold = 6
     unhealthy_threshold = 2

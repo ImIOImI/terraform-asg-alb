@@ -1,6 +1,9 @@
 data "aws_vpc" "vpc" {
-  tags = {
-    Default = true
+  filter {
+    name = "tag:${var.vpc-tag}"
+    values = [true]
   }
 }
+
+variable "vpc-tag" {}
 

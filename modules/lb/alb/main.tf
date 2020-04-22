@@ -16,9 +16,9 @@ resource "aws_alb" "web" {
   subnets            = module.network-lookup.public-subnet-ids
 
   access_logs {
-    bucket  = module.global.s3-log-bucket
+    bucket  = var.s3-log-bucket
     enabled = true
-    prefix  = module.global.environment
+    prefix  = var.environment
   }
 
   lifecycle {

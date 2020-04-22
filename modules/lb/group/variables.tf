@@ -20,3 +20,7 @@ variable "web-arn" {
   type = string  
   description = "arn of the alb to attach all the groups and listeners to"
 }
+
+variable "domain" {}
+variable "public-subnet-tag" {}
+variable "default-vpc-tag" {}

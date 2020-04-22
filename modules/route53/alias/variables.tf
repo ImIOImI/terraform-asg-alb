@@ -20,3 +20,5 @@ variable "zone-id" {
   type = string
   description = "zone-id"
 }
+
+variable "domain" {}
